@@ -23,3 +23,7 @@ const shop = {
 console.log(shop);
 const shopJSON = JSON.stringify(shop);
 console.log(shopJSON);
+
+// Now converting the string to parse/integer 
+const shopObj = JSON.parse(shopJSON);
+console.log(shopObj);
