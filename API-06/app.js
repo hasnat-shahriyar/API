@@ -20,6 +20,25 @@ const displayPhones = phones => {
     // Clear previous content in the card container
     phoneContainer.innerHTML = "";
 
+    // Display only the first 6 Phones
+    phones = phones.slice(0, 6);
+
+    // Get the "No Phones Found" message element
+    const noPhone = document.getElementById("no-found-msg");
+
+    // If there are no phones in the result, display the message; otherwise, hide it
+    // Check if there are no phones found in the search results
+    if (phones.length === 0) {
+        // If no phones are found, remove the "d-none" class to make the message visible
+        noPhone.classList.remove("d-none");
+    } else {
+        // If there are phones found, add the "d-none" class to hide the message
+        noPhone.classList.add("d-none");
+    }
+    // The code checks if there are no phones found in the search results by examining the phones array's length.
+    // If no phones are found (i.e., phones.length is 0), it removes the "d-none" class from the "no-found-msg" element, making the "No Phones Found" message visible.
+    // If there are phones found (i.e., phones.length is not 0), it adds the "d-none" class to hide the "No Phones Found" message to indicate that there are search results to display.
+    
     // Loop through the phone data and create HTML elements for each phone
     phones.forEach(phone => {
         const phoneDiv = document.createElement("div");
@@ -41,6 +60,7 @@ const displayPhones = phones => {
 
 // Add an event listener to the "search" button
 document.getElementById("search-btn").addEventListener("click", function(){
+    // Get the user's input from the search field
     const searchField = document.getElementById("exampleInputEmail1");
     const searchText = searchField.value;
 
@@ -50,6 +70,7 @@ document.getElementById("search-btn").addEventListener("click", function(){
 
 // Call the loadPhone function without any initial search query to load some data
 loadPhone();
+
 
 
 // const loadPhone = async() => { ... }: This defines an asynchronous function named loadPhone. The async keyword indicates that this function will contain asynchronous operations.
