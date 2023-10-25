@@ -38,7 +38,7 @@ const displayPhones = phones => {
     // The code checks if there are no phones found in the search results by examining the phones array's length.
     // If no phones are found (i.e., phones.length is 0), it removes the "d-none" class from the "no-found-msg" element, making the "No Phones Found" message visible.
     // If there are phones found (i.e., phones.length is not 0), it adds the "d-none" class to hide the "No Phones Found" message to indicate that there are search results to display.
-    
+
     // Loop through the phone data and create HTML elements for each phone
     phones.forEach(phone => {
         const phoneDiv = document.createElement("div");
@@ -56,10 +56,16 @@ const displayPhones = phones => {
     // Append the phone card to the phone container
     phoneContainer.appendChild(phoneDiv);
     });
+
+    // Stop the Spinner
+    toggleSpinner(false);
 }
 
 // Add an event listener to the "search" button
 document.getElementById("search-btn").addEventListener("click", function(){
+    // Start the Spinner
+    toggleSpinner(true);
+
     // Get the user's input from the search field
     const searchField = document.getElementById("exampleInputEmail1");
     const searchText = searchField.value;
@@ -67,6 +73,16 @@ document.getElementById("search-btn").addEventListener("click", function(){
     // Call the loadPhone function with the user's search query
     loadPhone(searchText);
 });
+
+// Function to toggle the visibility of a loading spinner
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById("spinner");
+    if (isLoading){
+        loaderSection.classList.remove("d-none");
+    } else{
+        loaderSection.classList.add("d-none");
+    }
+}
 
 // Call the loadPhone function without any initial search query to load some data
 loadPhone();
