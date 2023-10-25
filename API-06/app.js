@@ -1,7 +1,7 @@
 // Define an asynchronous function named loadPhone
-const loadPhone = async () => {
+const loadPhone = async (searchText) => {
     // Create a URL by interpolating a search query for "iphone" into the API endpoint
-    const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
     // Send a GET request to the specified URL and wait for the response
     const res = await fetch(url);
@@ -16,8 +16,11 @@ const loadPhone = async () => {
 // Define a function to display a phone name
 const displayPhones = phones => {
     const phoneContainer = document.getElementById("card-container");
-    phoneContainer.innerHTML = ""; // Clear previous content
+    
+    // Clear previous content in the card container
+    phoneContainer.innerHTML = "";
 
+    // Loop through the phone data and create HTML elements for each phone
     phones.forEach(phone => {
         const phoneDiv = document.createElement("div");
         phoneDiv.classList.add("col");
@@ -30,21 +33,24 @@ const displayPhones = phones => {
             </div>
         </div>
     `;
+
+    // Append the phone card to the phone container
     phoneContainer.appendChild(phoneDiv);
-});
+    });
 }
 
+// Add an event listener to the "search" button
+document.getElementById("search-btn").addEventListener("click", function(){
+    const searchField = document.getElementById("exampleInputEmail1");
+    const searchText = searchField.value;
 
+    // Call the loadPhone function with the user's search query
+    loadPhone(searchText);
+});
 
-
-
-
-
-
-
-
-// Call the loadPhone function, initiating the API request and data retrieval
+// Call the loadPhone function without any initial search query to load some data
 loadPhone();
+
 
 // const loadPhone = async() => { ... }: This defines an asynchronous function named loadPhone. The async keyword indicates that this function will contain asynchronous operations.
 
