@@ -2,8 +2,8 @@
 const loadQuote = () => {
     // Use the fetch() function to make an HTTP GET request to the API.
     fetch("https://api.kanye.rest/")
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => displayQuote(data)); // Call the displayQuote function with the JSON data
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => displayQuote(data)); // Call the displayQuote function with the JSON data
 }
 
 // Define a function called displayQuote to display the fetched quote on the web page.
