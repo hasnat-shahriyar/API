@@ -9,10 +9,7 @@ const loadCountries = () => {
 }
 
 // Function to display countries on the webpage
-const displayCountries = countries => {
-    // Logging the countries data to the console for debugging purposes
-    console.log(countries);
-    
+const displayCountries = countries => {    
     // Mapping through the array of countries and creating HTML for each country using the getCountries function
     const allCountriesHTML = countries.map(country => getCountries(country));
     
